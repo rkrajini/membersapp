@@ -6,10 +6,13 @@ const router = express.Router();
 router.get('/', authController.isLoggedIn,authController.selectallrows, (req, res) => {
 
   if (req.admin){
-    res.render('index',{
+   // res.render('index',{
       
-      rows:req.rows
-    });
+      //rows:req.rows
+    //});
+    res.status(401).render('login', {
+          message: 'you are an admin'
+        })
   }
   else if(req.user){
     res.redirect('/profile');
@@ -18,7 +21,7 @@ router.get('/', authController.isLoggedIn,authController.selectallrows, (req, re
   res.redirect('/login');
   }
   
-  res.redirect('/login');
+  //res.redirect('/login');
 });
 
 router.get('/register',authController.isLoggedIn, (req, res) => {
