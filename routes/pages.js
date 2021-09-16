@@ -6,13 +6,11 @@ const router = express.Router();
 router.get('/', authController.isLoggedIn,authController.selectallrows, (req, res) => {
 
   if (req.admin){
-   // res.render('index',{
+   res.render('index',{
       
-      //rows:req.rows
-    //});
-    res.status(401).render('login', {
-          message: 'you are an admin'
-        })
+      rows:req.rows
+    });
+    
   }
   else if(req.user){
     res.redirect('/profile');
