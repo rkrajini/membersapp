@@ -438,10 +438,14 @@ exports.update = async (req, res) => {
 
 exports.search= (req, res) => {
   let searchTerm = req.body.search;
+  let firstnameterm=req.body.searchfirstname;
+  let lastnameterm=req.body.searchlastname;
+  let mobilenoterm=req.body.searchmobileno;
+  let membernoterm=req.body.searchmemberno;
   let typeTerm= req.body.filtertype;
   let statusTerm= req.body.filterstatus;
   // User the connection
-  db.query("SELECT * FROM members WHERE (firstname LIKE ? OR lastname LIKE ? OR member_no LIKE ? OR mobile LIKE ? OR address1 LIKE ? OR address2 LIKE ? ) AND membertype = ? AND status = ?", ['%' + searchTerm + '%', '%' + searchTerm + '%','%' + searchTerm + '%','%' + searchTerm + '%','%' + searchTerm + '%','%' + searchTerm + '%',typeTerm,statusTerm], (err, rows) => {
+  db.query("SELECT * FROM members WHERE (country LIKE ? OR state LIKE ? OR postcode LIKE ? OR suburb LIKE ? OR address1 LIKE ? OR address2 LIKE ? ) AND membertype = ? AND status = ? AND firstname = ? AND lastname = ? AND member_no = ? AND mobile = ?", ['%' + searchterm + '%', '%' + searchTerm + '%','%' + searchTerm + '%','%' + searchTerm + '%','%' + searchTerm + '%','%' + searchTerm + '%',typeTerm,statusTerm,firstnameterm,lastnameterm,membernoterm,mobilenoterm], (err, rows) => {
     if (!err) {
       res.render('index', { rows:rows });
     } else {
