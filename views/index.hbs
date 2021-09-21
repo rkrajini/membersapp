@@ -88,6 +88,12 @@
           
           <button class="btn btn-primary align-self-center" type="submit">Search</button>
   </form>
+  {{#if rows}}
+  <div class="col-6">
+    <h1>Number of rows: {{rows.length}}</h1>
+  </div>
+  {{/if}}
+
   </div>
   
   
