@@ -445,13 +445,9 @@ exports.search= (req, res) => {
   let typeTerm= req.body.filtertype;
   let statusTerm= req.body.filterstatus;
 
-  if (membernoterm="")
-  {
-    membernoterm="%";
-  }
   
   // User the connection
-  db.query("SELECT * FROM members WHERE ( address1 LIKE ? OR address2 LIKE ?) AND membertype LIKE ? AND status LIKE ? AND firstname LIKE ? AND lastname LIKE ? AND member_no LIKE ? AND mobile LIKE ?", ['%' + searchTerm + '%','%' + searchTerm + '%',typeTerm,statusTerm,'%'+firstnameterm+ '%','%'+lastnameterm+'%',membernoterm,'%'+mobilenoterm+'%'], (err, rows) => {
+  db.query("SELECT * FROM members WHERE ( address1 LIKE ? OR address2 LIKE ?) AND membertype LIKE ? AND status LIKE ? AND firstname LIKE ? AND lastname LIKE ? AND member_no LIKE ? AND mobile LIKE ?", ['%' + searchTerm + '%','%' + searchTerm + '%',typeTerm,statusTerm,'%'+firstnameterm+ '%','%'+lastnameterm+'%','%'+membernoterm,'%'+mobilenoterm+'%'], (err, rows) => {
     if (!err) {
       res.render('index', { rows:rows });
     } else {
