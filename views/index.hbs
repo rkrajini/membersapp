@@ -45,12 +45,17 @@
   </div>
 
   <div class="col-md-8">
-    <form class="d-flex" method="POST" action="/auth/search"  novalidate>
+    <form method="POST" action="/auth/search"  novalidate>
         <div class="col-md-3">
              <div class="form-group">
             <label for="search">Search by address</label>
             <div class="col-md-8">
+            {{#if searchTerm}}
+            <input class="form-control me-2" type="search" value="{{searchTerm}}" name="search" aria-label="Search">
+            {{else}}
+
             <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+            {{/if}}
             </div>
           </div>
           </div>
@@ -58,7 +63,11 @@
              <div class="form-group">
             <label for="search">Search by member number</label>
             <div class="col-md-8">
+              {{#if membernoterm}}
+              <input class="form-control me-2" type="number" value="{{membernoterm}}" name="searchmemberno" aria-label="Search">
+              {{else}}
             <input class="form-control me-2" type="number" placeholder="Member no." name="searchmemberno" aria-label="Search">
+            {{/if}}
             </div>
           </div>
           </div>
@@ -66,7 +75,12 @@
              <div class="form-group">
             <label for="search">Search by mobile </label>
             <div class="col-md-8">
+              {{#if mobilenoterm}}
+              <input class="form-control me-2" type="number" value="{{mobilenoterm}}" name="searchmobileno" aria-label="Search">
+              {{else}}
+
             <input class="form-control me-2" type="number" placeholder="Mobile no." name="searchmobileno" aria-label="Search">
+            {{/if}}
             </div>
           </div>
           </div>
@@ -74,7 +88,11 @@
              <div class="form-group">
             <label for="search">Search by first name</label>
             <div class="col-md-8">
+              {{#if firstnameterm}}
+              <input class="form-control me-2" type="search" value="{{firstnameterm}}" name="searchfirstname" aria-label="Search">
+              {{else}}
             <input class="form-control me-2" type="search" placeholder="First Name" name="searchfirstname" aria-label="Search">
+            {{/if}}
             </div>
           </div>
           </div>
@@ -82,7 +100,11 @@
              <div class="form-group">
             <label for="search">Search by last name</label>
             <div class="col-md-8">
+              {{#if lastnameterm}}
+            <input class="form-control me-2" type="search" value="{{lastnameterm}}" name="searchlastname" aria-label="Search">
+            {{else}}
             <input class="form-control me-2" type="search" placeholder="Last Name" name="searchlastname" aria-label="Search">
+            {{/if}}
             </div>
           </div>
           </div>
@@ -92,6 +114,9 @@
             <label for="search">Search by status</label>
             <div class="col-md-8">
             <select class='form-control' name ='filterstatus'>
+              {{#if statusTerm}}
+              <option value ="{{statusTerm}}" hidden selected>{{statusterm}}</option>
+              {{/if}}
               <option value="%">All</option>
               <option value="Active">Active</option>
               <option value="Resigned">Resigned</option>
@@ -107,6 +132,9 @@
             <label for="search">Search by type</label>
             <div class="col-md-8">
             <select class='form-control' name ='filtertype'>
+              {{#if typeTerm}}
+              <option value ="{{typeTerm}}" hidden selected>{{typeterm}}</option>
+              {{/if}}
               <option value="%">All</option>
               <option value="Ordinary Member">Ordinary</option>
               <option value="Life Member">Life</option>
